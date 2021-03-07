@@ -1,3 +1,17 @@
+# Deployment Instructions (Node.js and PostgreSQL are required for this project to work):
+
+## PostgreSQL user and database creation
+First, create a user with username "challenger" and password "challengePass" in your PostgreSQL, this user must be able to create databases
+	eg. "createuser -d -P challenger" and enter "challengePass" in the password prompt
+Then, quit PostgreSQL and create/import the provided database with "psql -U challenger -d challenge < challengeData" in the command line from the root directory of the repo
+
+NOTE: You can use different database and user names, change the PostgreSQL settings at the start of ./node-level/server.js to use different names, 
+	host locations, or database ports
+
+## Node and React project building
+Running the included startProj.bat will launch both the Node.js and react processes, which are in separate folders with their own npm commands
+	To run these processes manually, type "npm run dev" in the node-level directory, then "npm start" in the react-level directory
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
