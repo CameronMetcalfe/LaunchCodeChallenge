@@ -1,0 +1,98 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.bat-nav {
+  background-color: #5f6caf; 
+  color: #fff !important;
+}
+
+.bat-light {
+  background-color: #e6e6e6; 
+}
+
+.bat-background {
+  background-image: linear-gradient(to right, #5bbfba, #5f6caf);
+  color: #fff;
+}
+
+.bat-white-text > * {
+  color: #fff;
+}
+
+.bat-purple {
+  color: #5f6caf;
+}
+
+.bat-children-purple > * {
+  color: #5f6caf;
+}
+
+.bat-cyan {
+  color: #5bbfba;
+}
+
+.bat-btn {
+  background-color: #5bbfba !important;
+  border-color: #5bbfba !important;
+  color: #fff !important;
+}
+
+.bat-bar {
+  height: 10px;
+}
+
+.bat-bg-0 {
+  background-color: #5bbfba;
+}
+
+.bat-bg-1 {
+  background-color: #5f6caf;
+}
+
+.bat-bg-2 {
+  background-color: #e7f0c3;
+}
+
+.bat-bg-3 {
+  background-color: #f0cf85;
+}
+
+.bat-bg-4 {
+  background-color: #a4d4ae;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
