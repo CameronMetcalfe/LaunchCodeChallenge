@@ -5,7 +5,6 @@ import { Navbar, Nav, Form, FormControl } from 'react-bootstrap';
 import { ListPortlet, ImagePortlet, DashBoardPortlet, LocationsPortlet, AddQuotePortlet, QuoteListPortlet } from './components'
 
 class App extends React.Component {
-
 	render() {
 		const linkClass = "mb-3";
 		return (
@@ -44,13 +43,11 @@ class App extends React.Component {
 								<DashBoardPortlet/>
 							</div>
 							<div className="row">
-								{/* <Portlet title="Quick quote" icon="fas fa-forward" colSize="4"/> */}
-								<AddQuotePortlet icon="fas fa-forward" colSize="4"/>
+								<AddQuotePortlet title="Quick Quotes" icon="fas fa-forward" colSize="4"/>
 								<QuoteListPortlet/>
-								<ListPortlet title="New Leads" icon="far fa-envelope" colSize="3" length="4" listEnd="12:40 pm"/>
+								<ListPortlet title="New Leads" icon="far fa-envelope" colSize="3" length="4" listEnd="12:40pm"/>
 							</div>
 							<div className="row">
-								{/* <ImagePortlet title="Popular destinations &amp; Packages" icon="fas fa-paper-plane" colSize="9" imgSource="/locations.png"/> */}
 								<LocationsPortlet colSize="9"/>
 								<ListPortlet title="Team chat" icon="far fa-comment-alt" colSize="3" length="4" listIcon="fas fa-comment-dots"/>
 							</div>

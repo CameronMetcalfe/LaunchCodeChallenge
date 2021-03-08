@@ -1,10 +1,9 @@
 import React from 'react';
-//import './App.css';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import { getQuotes } from './services';
-import { Modal, Navbar, Nav, Form, FormControl, Card, Row, Col, Button } from 'react-bootstrap';
-//import { Portlet } from './components'
+import { Modal, Form, Card, Row, Col, Button } from 'react-bootstrap';
 
+//basic box-style display element, this is used by all the components ending in Portlet
+//props: colSize: the size of the column it occupies, title: Text for the title, icon: class of icon to add to the title, body: html to be displayed in the body
 export class Portlet extends React.Component {
 	render() {
 		const colSize = "p-2 col-md-" + this.props.colSize;
@@ -25,6 +24,9 @@ export class Portlet extends React.Component {
 	}
 }
 
+//Portlet containing a simple list
+//props: colSize: the size of the column it occupies, title: Text for the title, icon: class of icon to add to the title
+//	length: number of list items, listIcon: class of an icon to display at the end of the list, listEnd: text to display at the end of a list item instead of an icon 
 export class ListPortlet extends React.Component {
 	render() {
 		let listEnd = this.props.listIcon ? <i className={this.props.listIcon + " bat-cyan"}></i> : <span>{this.props.listEnd}</span>;
@@ -47,6 +49,8 @@ export class ListPortlet extends React.Component {
 	}
 }
 
+//Portlet only containing an image
+//props: colSize: the size of the column it occupies, title: Text for the title, icon: class of icon to add to the title, imgSource: the path to the image to be displayed
 export class ImagePortlet extends React.Component {
 	render() {
 		const imageBody = <img src={process.env.PUBLIC_URL + this.props.imgSource} className="w-100"/>
@@ -56,12 +60,13 @@ export class ImagePortlet extends React.Component {
 	}
 }
 
+//Portlet for the welcome message, it has it's own component because of it's unique styling
+//props: none
 export class DashBoardPortlet extends React.Component {
 	render() {
 		return (
 			<div className="p-2 col-md-12">
 				<Card className="bat-background">
-					{/* <Card.Title>Welcome to your dashboard</Card.Title> */}
 					<Card.Body>
 						<div className="row p-4">
 							<div className="col-md-4">
@@ -85,6 +90,8 @@ export class DashBoardPortlet extends React.Component {
 	}
 }
 
+//Portlet for the locations data, it has it's own component because of it's unique styling
+//props: colSize: the size of the column it occupies
 export class LocationsPortlet extends React.Component {
 	render() {
 		let bars = [];
@@ -107,6 +114,8 @@ export class LocationsPortlet extends React.Component {
 	}
 }
 
+//Component for the list of quotes, made into it's own component because including all of this in the QuoteListPortlet made it unwieldy
+//props: quotes: a list of quotes retrieved from the database
 export class QuoteList extends React.Component {
 	constructor(props) {
 		super(props);
@@ -119,8 +128,9 @@ export class QuoteList extends React.Component {
 		};
 	}
 
+	//these 2 methods used for opening/closing the quote details modals
 	handleClose() {
-		this.setState({show: null}); //should be null not id?
+		this.setState({show: null});
 	}
 
 	handleShow(id) {
@@ -160,10 +170,6 @@ export class QuoteList extends React.Component {
 									<td>Price</td>
 									<td>${quote.price}</td>
 								</tr>
-								{/* <tr>
-									<td>Contact Phone#</td>
-									<td>{quote.contact_phone_number}</td>
-								</tr> */}
 								<tr>
 									<td>Contact Email</td>
 									<td>{quote.contact_email}</td>
@@ -220,29 +226,23 @@ export class QuoteList extends React.Component {
 	}
 }
 
+//Portlet for creating new quotes
+//props: colSize: the size of the column it occupies, title: Text for the title, icon: class of icon to add to the title
 export class AddQuotePortlet extends React.Component {
-	// handleSubmit = (data) => {
-	// 	console.log("started");
-	// 	createQuote(data).then(response => {
-	// 		console.log(response);
-	// 	});
-	// 	console.log("submitted");
-	// };
-
 	render() {
 		const body = (
 			<Form method="POST" action="/createQuote" enctype="application/json"> 
 				<Row>
 					<Col md="6">
 						<Form.Group><Form.Control type="text" placeholder="FROM" name="from"/></Form.Group>
-						<Form.Group><Form.Control type="text" placeholder="DEPART DATE" name="departDate"/></Form.Group>
+						<Form.Group><Form.Control type="text" placeholder="DEPART DATE YYYY-MM-DD" name="departDate"/></Form.Group>
 						<Form.Group><Form.Control type="number" placeholder="PEOPLE" name="travellers"/></Form.Group>
 						<Form.Group><Form.Control type="text" placeholder="NAME" name="contactName"/></Form.Group>
 						<Form.Group><Form.Control type="number" placeholder="PRICE" name="price"/></Form.Group>
 					</Col>
 					<Col md="6">
 						<Form.Group><Form.Control type="text" placeholder="DESTINATION" name="destination"/></Form.Group>
-						<Form.Group><Form.Control type="text" placeholder="RETURN DATE" name="returnDate"/></Form.Group>
+						<Form.Group><Form.Control type="text" placeholder="RETURN DATE YYYY-MM-DD" name="returnDate"/></Form.Group>
 						<Form.Group><Form.Control type="text" placeholder="TRANSPORTATION" name="transportation"/></Form.Group>
 						<Form.Group><Form.Control type="email" placeholder="EMAIL" name="email"/></Form.Group>
 						<Button type="submit" className="bat-btn">Create a Quote</Button>
@@ -251,30 +251,29 @@ export class AddQuotePortlet extends React.Component {
 			</Form>
 		);
 		return (
-			<Portlet title="Quick Quotes" icon={this.props.icon} colSize={this.props.colSize} body={body}></Portlet>
+			<Portlet title={this.props.title} icon={this.props.icon} colSize={this.props.colSize} body={body}></Portlet>
 		);
 	}
 }
 
+//Portlet for displaying the quotes from the database; retrieves quotes when the component mounts
+//props: none
 export class QuoteListPortlet extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			quotes: []
 		}
-
 		//this.componentDidMount = this.componentDidMount.bind(this); //may not be necessary
 	}
 	
-
+	//gets the quotes from the database
 	componentDidMount = () => {
 		getQuotes().then(quotes => {
 			console.log(quotes);
 			this.setState({quotes: quotes});
 		});
 	}
-
-	
 
 	render() {
 		const quoteList = <QuoteList quotes={this.state.quotes}/>
