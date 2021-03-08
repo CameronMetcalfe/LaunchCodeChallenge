@@ -64,6 +64,23 @@
   color: #fff !important;
 }
 
+.bat-stats-num {
+  color: #f0cf85;
+  font-size: 250%;
+}
+
+.bat-stats-text {
+  font-size: 200%;
+}
+
+.bat-link {
+  color: blue;
+}
+
+.bat-link:hover {
+  color:#5bbfba;
+}
+
 .bat-bar {
   height: 10px;
 }

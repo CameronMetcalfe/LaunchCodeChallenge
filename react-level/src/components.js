@@ -76,10 +76,13 @@ export class DashBoardPortlet extends React.Component {
 								</div>
 							</div>
 							<div className="col-md-8">
-								<div className="row h-100">
-									<div className="col-md-4 d-flex h-100"><span className="d-flex align-self-end">101 New Leads</span></div>
-									<div className="col-md-4 d-flex h-100"><span className="d-flex align-self-end">35 Quotes Created</span></div>
-									<div className="col-md-4 d-flex h-100"><span className="d-flex align-self-end">40 Pending Orders</span></div>
+								<div className="h-75 inline block align-items-center justify-content-center d-flex">
+									<img src={process.env.PUBLIC_URL + "/example.png"}/>
+								</div>
+								<div className="h-25 inline block row align-items-end">
+									<div className="col-md-4"><span className="bat-stats-num">101</span><span className="bat-stats-text"> New Leads</span></div>
+									<div className="col-md-4"><span className="bat-stats-num">35</span><span className="bat-stats-text"> Quotes Created</span></div>
+									<div className="col-md-4"><span className="bat-stats-num">40</span><span className="bat-stats-text"> Pending Orders</span></div>
 								</div>
 							</div>
 						</div>
@@ -143,7 +146,7 @@ export class QuoteList extends React.Component {
 				<td>{quote.contact_name}</td>
 				<td>{quote.destination_location}</td>
 				<td>${quote.price}</td>
-				<td onClick={() => this.handleShow(index)}>...</td>
+				<td className="bat-link" onClick={() => this.handleShow(index)}>Click to show details</td>
 				
 				<Modal show={this.state.show == index} onHide={() => this.handleClose()}>
 					<Modal.Header closeButton closeLabel="close window">
@@ -257,14 +260,13 @@ export class AddQuotePortlet extends React.Component {
 }
 
 //Portlet for displaying the quotes from the database; retrieves quotes when the component mounts
-//props: none
+//props: colSize: the size of the column it occupies
 export class QuoteListPortlet extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			quotes: []
 		}
-		//this.componentDidMount = this.componentDidMount.bind(this); //may not be necessary
 	}
 	
 	//gets the quotes from the database
@@ -278,7 +280,7 @@ export class QuoteListPortlet extends React.Component {
 	render() {
 		const quoteList = <QuoteList quotes={this.state.quotes}/>
 		return (
-			<Portlet title="Pending Quotes" icon="fas fa-history" colSize="5" body={quoteList}></Portlet>
+			<Portlet title="Pending Quotes" icon="fas fa-history" colSize={this.props.colSize} body={quoteList}></Portlet>
 		);
 	}
 }

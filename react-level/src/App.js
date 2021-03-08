@@ -44,7 +44,7 @@ class App extends React.Component {
 							</div>
 							<div className="row">
 								<AddQuotePortlet title="Quick Quotes" icon="fas fa-forward" colSize="4"/>
-								<QuoteListPortlet/>
+								<QuoteListPortlet colSize="5"/>
 								<ListPortlet title="New Leads" icon="far fa-envelope" colSize="3" length="4" listEnd="12:40pm"/>
 							</div>
 							<div className="row">
