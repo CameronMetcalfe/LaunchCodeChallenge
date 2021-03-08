@@ -14,9 +14,10 @@ NOTE: You can use different database / user names or passwords, change the Postg
 For first time launch, go into both the node-level and react-level folders and run "npm install" in each of them
 
 Running the included startProj.bat will launch both the Node.js and react processes, which are in separate folders with their own npm commands
-	To run these processes manually, type "npm run dev" in the node-level directory, then "npm start" in the react-level directory, you will likely need to do these commands in seperate terminals
 
-	If the react project starts before the server does, you may have to refresh the page to get it working properly, but I've never seen this happen
+To run these processes manually, type "npm run dev" in the node-level directory, then "npm start" in the react-level directory, you will likely need to do these commands in seperate terminals
+
+If the react project starts before the server does, you may have to refresh the page to get it working properly, but I've never seen this happen
 
 # Structural/Design Details
 I decided to keep the front end and back end very separate, each has their own node_modules and are run as separate, but interracting, processes.
