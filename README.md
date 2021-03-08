@@ -2,8 +2,7 @@
 Included batch file for starting the front/back end processes on windows, use the manual commands for other environments
 
 ## PostgreSQL user and database creation
-1) Create a user with username "challenger" and password "challengePass" in your PostgreSQL, this user must be able to create databases
-	eg. "createuser -d -P challenger;" and enter "challengePass" in the password prompt
+1) Create a role with username "challenger" and password "challengePass" in your PostgreSQL, this user must be able to create databases and have the password 		"challengePass" eg. with "CREATE ROLE challenger WITH CREATEDB LOGIN PASSWORD 'challengePass'"
 2) Create a database called "challenge" eg. "create database challenge;"
 3) Quit PostgreSQL and import the provided database with "psql -U challenger -d challenge < challengeData" in the command line from the root directory of the repo
 
