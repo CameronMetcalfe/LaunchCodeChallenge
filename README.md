@@ -29,5 +29,6 @@ Each of the different types of information boxes have their own Component, which
 The project was tested on a 1920 x 1080 monitor, other resolutions and levels of zoom may lead to awkward spacing of elements
 
 Icons taken from Font Awesome, they are imported via url, so the project won't look right without an internet connection
+World map image taken from https://all-free-download.com/free-vector/simple-world-map-vector.html
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
